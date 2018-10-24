@@ -13,16 +13,14 @@ def findDist(r, time):
 
 	return (name, dist)
 
-
-
 with open('data/day14.txt') as fp:
 	reindeers = finder.findall(fp.read())
 
 	list1 = [findDist(r, MY_TIME) for r in reindeers]
-	print('Ans 1:', sorted(list1, key=lambda t: t[1], reverse = True)[0])
 
 	list2 = []
 	for time in range(1, MY_TIME):
 		list2.append(sorted((findDist(r, time) for r in reindeers), key=lambda t: t[1], reverse = True)[0][0])
 
+	print('Ans 1:', sorted(list1, key=lambda t: t[1], reverse = True)[0])
 	print('Ans 2:', Counter(list2).most_common(1)[0])
