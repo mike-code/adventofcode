@@ -2,7 +2,6 @@ import re, random
 from itertools import permutations
 
 data_1 = {}
-data_2 = {}
 
 with open('data/day19.txt') as fp:
 	for i in [i.split(' => ') for i in fp.read().splitlines()]:
