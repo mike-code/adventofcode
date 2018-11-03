@@ -3,10 +3,10 @@ import re
 finder = re.compile(r'(\w{3}) (a|b|(?:\-|\+)\d+)(?:, )?((?:\-|\+)\d+)?')
 
 with open('data/day23.txt') as fp:
-	program = np.array([i for i in finder.findall(fp.read())])
+	program = finder.findall(fp.read())
 
 def run(s):
-	i = 0
+	i   = 0
 	reg = {'a': s, 'b': 0}
 
 	while i < len(program):
@@ -19,7 +19,7 @@ def run(s):
 		elif instr == 'tpl':
 			reg[p1] *= 3
 		elif instr == 'jmp':
-			i = i + int(p1)
+			i += int(p1)
 			continue
 		elif instr == 'jie':
 			if reg[p1] % 2 == 0:
