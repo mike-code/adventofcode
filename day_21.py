@@ -1,4 +1,4 @@
-import re, numpy, ceil, itertools
+import re, numpy, math, itertools
 
 finder = re.compile(r'Hit Points: (\d+)[\S\s]+Damage: (\d+)[\S\s]+Armor: (\d+)')
 
