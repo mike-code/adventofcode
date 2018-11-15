@@ -6,7 +6,9 @@ F = File.read("#{__dir__}/data/day7.txt").lines.map{ |l| {
 def Task1(arg)
     arg.map{ |w|
         w.each_char.each_cons(4).map{ |c|
-            c[0] != c[1] and c[0..1] === c[2..3].reverse } }.flatten.any?
+            c[0] != c[1] and c[0..1] === c[2..3].reverse
+        }
+    }.flatten.any?
 end
 
 def Task2(abas, babs)
@@ -15,7 +17,8 @@ def Task2(abas, babs)
             c if c[0] != c[1] and c[0] == c[2]
         }.reject(&:nil?).map { |a|
             babs.map{ |bab| bab.include? (a[1] + a[0] + a[1]) }.any?
-        }.any? }.any?
+        }.any?
+    }.any?
 end
 
 puts "Ans1: %s" % F.map{ |e| Task1(e[:bab]) ? false : Task1(e[:aba])}.count(true)
