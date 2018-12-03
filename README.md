@@ -1,6 +1,3 @@
-# Advent of Code 2015, 2016 & 2017
+# Advent of Code 2015, 2016, 2017 & 2018 solutions
 
-My [continuation of] solutions for Advent of Code http://adventofcode.com/ in Python
-
-previous repo:
-https://github.com/mike-code/adventofcode/
+My mix of solutions for Advent of Code http://adventofcode.com/ in Ruby, Python & PHP
