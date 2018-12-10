@@ -1,39 +1,27 @@
-F = File.read("#{__dir__}/data/day10.txt").scan(/position=<(.+?),(.+?)> velocity=<(.+?),(.+?)>/).map{|m| m.map(&:to_i) }
+F = File.read("#{__dir__}/data/day10.txt").scan(/position=<(.+?),(.+?)> velocity=<(.+?),(.+?)>/)
+            .map{ |m| m.flatten.map(&:to_i) }
 
-PTS = F.map{|p|
-    {pos: [p[0], p[1]], move: [p[2], p[3]]}
-}
+ITERS = (1..Float::INFINITY).lazy.each_with_object(F).
+            map { |iter, acc|
+                acc.map! { |m| # thx @KrzaQ
+                    χ, γ, δχ, δγ = m.flatten.map(&:to_i)
+                    [χ+δχ, γ+δγ, δχ, δγ]
+                }
 
-xmin, xmax, ymin, ymax = [0,0,0,0]
-coords = []
-i = 0
-loop do
-    i+= 1
-    PTS.each { |p|
-        p[:pos][0] += p[:move][0]
-        p[:pos][1] += p[:move][1]
-    }
+                ymin, ymax = acc.map{ |y| y[1] }.minmax
+                [ymax - ymin, iter]
+            }.take_while { |a| a.first > 15 }.to_a.last.last.to_i
 
-    coords = PTS.map{ |p|
-        p[:pos]
-    }
+COORDS     = F.map{|x| x.take(2) }
+XMIN, XMAX = COORDS.map(&:first).minmax
+YMIN, YMAX = COORDS.map(&:last).minmax
 
-    xmin, xmax = coords.map(&:first).minmax
-    ymin, ymax = coords.map(&:last).minmax
-
-    # puts "%s %s" % [ymin, ymax]
-
-    break if ymax - ymin < 15
+puts "Ans 1:"
+(YMIN..YMAX).each do |y|
+    (XMIN..XMAX).each do |x|
+        print (COORDS.include? [x,y]) ? '#' : ' '
+    end
+    puts
 end
 
-board = Array.new(ymax - ymin + 1) { Array.new(xmax - xmin + 1) {'.'} }
-
-coords.each{ |c|
-    board[c.last - ymin][c.first - xmin] = '#'
-}
-
-board.each{ |b|
-    p b
-}
-
-p i
+puts "Ans 2: %s" % (ITERS + 1)
