@@ -19,7 +19,7 @@ YMIN, YMAX = COORDS.map(&:last).minmax
 puts "Ans 1:"
 (YMIN..YMAX).each do |y|
     (XMIN..XMAX).each do |x|
-        print (COORDS.include? [x,y]) ? '#' : ' '
+        print (COORDS.include? [x,y]) ? '###' : '   '
     end
     puts
 end
