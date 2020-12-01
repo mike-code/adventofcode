@@ -1,4 +1,4 @@
-Ξ = File.read("#{__dir__}/data/01.txt").lines.map(&:chomp).map(&:to_i)
+Ξ = File.read("#{__dir__}/data/01.txt").split.map(&:to_i)
 
 Λ = -> δ { Ξ.combination(δ).select { |w| w.sum == 2020 }.first.inject(:*) }
 
