@@ -1,4 +1,4 @@
-F = File.open("#{__dir__}/data/day_02.txt").read.strip.split(',').map(&:to_i)
+F = File.open("#{__dir__}/data/day_02.txt").strip.split(',').map(&:to_i)
 
 Ξ =-> x,y {
 	i = 0; ω = F.dup; ω[1,2] = [x, y];
