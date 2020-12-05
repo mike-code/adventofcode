@@ -9,7 +9,7 @@ puts "Ans 2: %d" % Λ.select { |f|
 	ξ = f.map { @1.split(':') }.to_h
 
 	true and
-	 	(1920..2002).include? ξ['byr'].to_i and
+		(1920..2002).include? ξ['byr'].to_i and
 		(2010..2020).include? ξ['iyr'].to_i and
 		(2020..2030).include? ξ['eyr'].to_i and
 		(
