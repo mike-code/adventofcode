@@ -1,4 +1,4 @@
-F = File.read("foo.txt")
+F = File.read("#{__dir__}/data/07.txt")
 
 DATA     = F.scan(/^(.+?) bags contain(.+)$/).map { |a,b| [a, b.scan(/ ([\d]+)?(?: )?([a-z]+ [a-z]+) bag(?:s)?(?:.|,)/) ] }.to_h
 REVERSED = DATA.map { |a| a.last.map { |b| [b.last, a.first] } }.flatten(1).group_by(&:first).map { |a,b| [a,b.map(&:last).uniq] }.to_h
