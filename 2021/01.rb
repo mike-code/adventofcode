@@ -1,6 +1,6 @@
-Ξ = File.read("#{__dir__}/data/01.txt").split.map(&:to_i)
+F = File.read("#{__dir__}/data/01.txt").split.map &:to_i
 
-Λ = -> δ { δ.each_cons(2).map { |x| x.inject(:-) < 0 }.count true }
+Ξ = -> δ { δ.each_cons(2).select { _1.inject(:-) < 0 }.size }
 
-puts "Ans 1: %d" % Λ.(Ξ)
-puts "Ans 2: %d" % Λ.(Ξ.each_cons(3).map { |x| x.inject(:+) })
+puts "Ans 1: %d" % Ξ.(F)
+puts "Ans 2: %d" % Ξ.(F.each_cons(3).map { _1.inject(:+) })
